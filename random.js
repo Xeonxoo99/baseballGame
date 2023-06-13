@@ -48,6 +48,7 @@ function getValue(answer, count) {
         if (answer.indexOf(e) === idx) s++; // indexOf()는 배열에서 지정된 요소를 찾을 수 있는 첫 번째 인덱스를 반환하고 존재하지 않으면 -1을 반환 또한, 같은 요소가 2개라면 ('a',2) 등으로 다음 순서의 요소를 가져올 수 있다.
         // 만약 answer이 123 indexOf로 0번째가 1이면 s++ 반복하여 1번째 > 2번째 > else if
         else if (answer.split('').includes(e)) b++; // answer의 공백을 자르고 숫자 하나씩을 보았을 때 includes로 e에 같은 숫자가 있는 지 찾아봄
+        // 만약 하나씩 나열 했는데, 0번째에 index에 위치 하지 않고, 숫자가  
     });
     
     if (s === 3) str = `${s}S`; // 스트라이크가 3개면 바로 콘솔로그
