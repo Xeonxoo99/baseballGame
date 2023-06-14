@@ -9,20 +9,20 @@
 setAnswer();
 // 랜덤 숫자 만들기
 function setAnswer() { // setAnswer 이라는 함수 만들기
-    let answer = ''; // 컴퓨터가 주는 최초 숫자는 공란으로 만들기
+    let answer = '' // 컴퓨터가 주는 최초 숫자는 공란으로 만들기
     while (answer.length < 3) { // answer이 3자리여야 함으로 인덱스가 0으로 시작하는 컴퓨터 언어에서는 3자리 수가 되기 전까지 반복 진행
-        const randomNum = Math.floor(Math.random * 10); // 숫자를 무작위로 만들어야 하기에 random() 메소드를 사용 => 다만, 0.0 ~ 1.0의 사이의 수를 갖고오기에 //인수로 전달받은 값과 같거나 작은 수 중에서 가장 큰 정수를 반환 하는 floor()메소드를 사용 하여 0~9까지의 수를 갖고 올 수 있도록 함
+        const randomNum = Math.floor(Math.random() * 10); // 숫자를 무작위로 만들어야 하기에 random() 메소드를 사용 => 다만, 0.0 ~ 1.0의 사이의 수를 갖고오기에 //인수로 전달받은 값과 같거나 작은 수 중에서 가장 큰 정수를 반환 하는 floor()메소드를 사용 하여 0~9까지의 수를 갖고 올 수 있도록 함
         // 위 randomNum은 사용하는 법 다시 한 번 알아볼 필요 *******
         if (!answer.includes(randomNum)) answer += randomNum // 만약 answer이 공란이 아닌 경우 includes를 사용하여 randomNum이 있는지 확인? 이 후 answer = answer + randomNum???
     }
     let count = 0; // 몇 번 시도했는지 확인 할 수 있는 용도
-    console.log(`컴퓨터가 숫자를 생성하였습니다. 답을 맞춰보세요!`); // 시작 시 나타나는 alert문구
+    console.log(`컴퓨터가 숫자${answer}를 생성하였습니다. 답을 맞춰보세요!`); // 시작 시 나타나는 alert문구
     getValue(answer, count);
 }
 
 // 입력하기
 function checkValue() {
-    let promptObj = prompt(''); // JavaScript에서 prompt() 함수는 사용자에게 입력을 요청하는 프롬프트 상자를 화면에 표시하기 위해 사용
+    let value = prompt(''); // JavaScript에서 prompt() 함수는 사용자에게 입력을 요청하는 프롬프트 상자를 화면에 표시하기 위해 사용
     if (value === null) {
         alert(`숫자를 입력하여 맞춰주세요!`);
         return false;
@@ -32,6 +32,9 @@ function checkValue() {
     } else if (value.length > 3) {
         alert(`숫자는 3자리를 입력해주세요..ㅠ`);
         return checkValue()
+    } else if (new Set(value).size < value.length) {
+        alert (`숫자는 중복되지 않게 입력해주세요. 새로고침 후 다시 실행해주세요.`)
+        return false;
     }
     return value;
 }
@@ -40,7 +43,7 @@ function getValue(answer, count) {
     let value = checkValue()
     if (!value) return; // value가 안들어오면 다시 위로 돌아가는데, 돌아가면 checkValue가 기다린다. // 위에서 만들어둔 조건문에 따라, 알림이 나온다.
     count++; // value가 찍힐 수록? (36줄) count가 0에서부터 늘어난다. (18줄)
-    console.log(`${count}번째 시도 : ${value}`); // 시도 횟수와, 본인이 무엇을 적었었는지 나온다.
+    console.log(`${count}번째 시도 : ${value}`); // 시도 횟수와, 본인이 무엇을 적었는지 나온다.
 
     let s = 0, b = 0 // 스트라이크 , 볼 0으로 정해놀기
     let str = ''; // 
